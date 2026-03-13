@@ -1,0 +1,26 @@
+name: ESLint
+
+on:
+  push:
+    branches: ["main", "dev"]
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Lint (strict on main)
+        if: github.ref == 'refs/heads/main'
+        run: npx eslint . --ext js,jsx --max-warnings 0
+
+      - name: Lint (errors only on dev)
+        if: github.ref == 'refs/heads/dev'
+        run: npx eslint . --ext js,jsx
