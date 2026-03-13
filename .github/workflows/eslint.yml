@@ -19,7 +19,7 @@ jobs:
 
       - name: Lint (strict on main)
         if: github.ref == 'refs/heads/main'
-        run: npx eslint . --ext js,jsx
+        run: npx eslint . --ext js,jsx --max-warnings 0
 
       - name: Lint (errors only on dev)
         if: github.ref == 'refs/heads/dev'
