@@ -92,4 +92,5 @@ function Window({ children, name }) {
 }
 Modal.Open = Open;
 Modal.Window = Window;
+export { ModalContext };
 export default Modal;
